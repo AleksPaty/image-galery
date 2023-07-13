@@ -1,0 +1,572 @@
+@import url(root.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.outer-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.flex-wrapper {
+    display: flex;
+}
+
+h1, h2 {
+    font-family: var(--forum-font);
+}
+p {
+    font-family: var(--inter-font);
+}
+
+/* Header */
+
+.header {
+    position: relative;
+    height: 90px;
+    padding: 20px;
+    background-color: #0C0C0E;
+}
+.flex-wrapper {
+    justify-content: space-between;
+}
+.logo {
+    text-decoration: none;
+    color: #fff;
+}
+.logo h1 {
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: 0.61px;
+}
+.header-nav {
+    flex-basis: 584px;
+    margin-right: 68px;
+}
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+.nav-item a {
+    display: block;
+    width: max-content;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--inter-font);
+    font-size: 20px;
+    line-height: 50px;
+    color: #fff;
+}
+.nav-item a:hover {
+    border-bottom: #fff solid 1px;
+}
+.profile {
+    align-self: center;
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    right: 20px;
+}
+.profile .icon_profile {
+    cursor: pointer;
+}
+.profile .profile-dropMenu {
+    display: none;
+    font-family: var(--inter-font);
+}
+.profile-dropMenu .dropMenu-header {
+    padding: 5px 16px;
+}
+.dropMenu-header h3 {
+    font-size: 15px;
+    line-height: 20px;
+    border-bottom: 1px solid #BB945F;
+}
+.dropMenu-body {
+    padding: 10px 11px 10px 10px;
+    list-style: none;
+}
+.dropMenu-item {
+    text-align: center;
+}
+.dropMenu-item a {
+    text-decoration: none;
+    color: #000;
+}
+.profile-dropMenu.active {
+    display: block;
+    position: absolute;
+    top: 59px;
+    right: -20px;
+    z-index: 1;
+    background-color: #fff;
+}
+
+/* Main */
+
+.welcome {
+    position: relative;
+    height: 600px;
+    background-image: url("../image/Welcome.jpg");
+}
+.welcome-blok {
+    position: absolute;
+    top: 220px;
+    width: 600px;
+    height: 220px;
+    padding: 35px 40px;
+    background-color: #000;
+}
+.welcome-header {
+    font: 40px var(--forum-font);
+    text-transform: uppercase;
+    line-height: 50px;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #fff;
+}
+
+.section-title {
+    padding: 20px;
+    padding-top: 0;
+    text-align: center;
+}
+.section-title h2 {
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: 2px;
+    color: #0C0C0E;
+}
+
+.about {
+    height: 837px;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+.border-line {
+    height: 1px;
+    width: 50px;
+    margin: 20px auto;
+    margin-bottom: 40px;
+    background-color: #0C0C0E;
+}
+.about-text {
+    font: 20px var(--inter-font);
+    line-height: 40px;
+}
+.carousel {
+    height: 626px;
+    max-width: 1400px;
+    overflow: hidden;
+}
+.image-line {
+    display: flex;
+    justify-content: space-between;
+    height: 560px;
+    width: 2350px;
+}
+.image-line .img-item {
+    height: 560px;
+    max-width: 450px;
+}
+.img-item img {
+    width: 100%;
+}
+.carousel-pagination {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 78px;
+    height: 26px;
+}
+.pagination-dot {
+    position: relative;
+    height: 26px;
+    width: 26px;
+    cursor: pointer;
+}
+.pagination-dot .show {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background-color: #0C0C0E;
+}
+.pagination-dot .show.curent {
+    background-color: #BB945F;
+}
+
+.favorites {
+    height: 1439px;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+.favorites .section-title,
+.coffe-shop .section-title,
+.contacts .section-title,
+.library-card .section-title {
+    padding-bottom: 0;
+}
+.seasons-form {
+    height: 128px;
+    padding-bottom: 40px;
+}
+.seasons-form .quest {
+    margin-bottom: 40px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.seasons-form .seasons {
+    width: 700px;
+}
+.seasons .ml0 {
+    margin-left: 0;
+}
+.seasons input {
+    margin-left: 85px;
+    margin-right: 15px;
+    height: 17px;
+    width: 17px;
+}
+
+.seasons input:checked + label {
+    font-weight: bold;
+}
+.seasons label {
+    font: 20px var(--inter-font)
+}
+.favorite-books {
+    height: 1150px;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+.book {
+    position: relative;
+    padding-right: 40px;
+    margin-bottom: 40px;
+    flex-basis: 590px;
+    height: 555px;
+}
+.book .border-line {
+    margin: 0 0 20px 0;
+    width: 60px;
+}
+.book-review {
+    height: 100%;
+    padding: 15px 20px;
+    border: 1px solid #000;
+}
+.staff-pick-teg {
+    font: 20px var(--forum-font);
+    line-height: 40px;
+    letter-spacing: 2px;
+}
+.book-name {
+    text-transform: uppercase;
+}
+.book-name, .author, .book-description {
+    font: bold 15px var(--inter-font);
+    line-height: 40px;
+    letter-spacing: 2px;
+}
+.book-description {
+    max-width: 355px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+.book-buy {
+    position: absolute;
+    bottom: 15px;
+    padding: 9px 27px;
+    font: bold 10px var(--inter-font);
+    letter-spacing: 1px;
+    background-color: #fff;
+    border-color: #0C0C0E;
+    color: #0C0C0E;
+    cursor: pointer;
+    transition: all 1000ms;
+}
+.book-buy:enabled:hover {
+    background-color: #BB945F;
+    border: none;
+}
+.book-buy:disabled {
+    border-color: #BB945F;
+    color: #BB945F;
+}
+.book-cover {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 300px;
+}
+
+.coffe-shop {
+    height: 841px;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+.coffe-shop .description {
+    text-align: center;
+    font-size: 20px;
+    line-height: 40px;
+    letter-spacing: 2px;
+}
+.menu-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    height: 520px;
+}
+.coffe-tea {
+    flex-basis: 438px;
+}
+.desert {
+    flex-basis: 482px;
+}
+.menu-list-header {
+    font: 40px var(--forum-font);
+    line-height: 40px;
+    letter-spacing: 2px;
+    color: #BB945F;
+}
+.menu-list-header.right {
+    text-align: end;
+}
+.drink-list {
+    list-style: none;
+}
+.menu-item {
+    margin-top: 40px;
+    height: 40px;
+}
+.menu-item p {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 40px;
+    letter-spacing: 2px;
+}
+.menu-item .price {
+    float: right;
+}
+.menu-item .price::before {
+    content: '';
+    display: inline-block;
+    margin: 7px 0;
+    margin-right: 60px;
+    height: 1px;
+    width: 100px;
+    background-color: #BB945F;
+}
+.desert-list {
+    list-style: none;
+}
+
+.contacts {
+    height: 575px;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+.contacts-info {
+    display: flex;
+    justify-content: space-between;
+    height: 414px;
+}
+.text-info {
+    width: 505px;
+    font-size: 20px;
+    line-height: 40px;
+    letter-spacing: 2px;
+}
+.text-info-header {
+    font: bold 20px var(--inter-font);
+    line-height: 40px;
+}
+.phone-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160px;
+    margin: 40px 0;
+}
+.text-info .member {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+}
+.location-map {
+    flex-basis: 696px;
+}
+
+.library-card {
+    height: 614px;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+.manage-card {
+    display: flex;
+    justify-content: space-between;
+    height: 454px;
+}
+.find-card-header {
+    font: 30px var(--inter-font);
+    letter-spacing: 0.6px;
+    text-align: center;
+}
+.library-card-form {
+    margin-top: 30px;
+    padding: 20px;
+    padding-bottom: 30px;
+    height: 386px;
+    max-width: 600px;
+    border: 3px solid #BB945F;
+}
+.input-block {
+    width: 100%;
+    padding: 20px;
+    padding-bottom: 25px;
+    background-color: #BB945F;
+}
+.input-block,
+.library-input {
+    font: 30px var(--forum-font);
+    line-height: 50px;
+    letter-spacing: 0.6px;
+}
+.library-input {
+    display: block;
+    width: 520px;
+    margin-top: 20px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    border: none;
+}
+.library-input::placeholder {
+    color: #8E8E8E;
+}
+.library-input[type="number"]::-moz-focus-inner {
+    -moz-appearance: textfield;
+}
+.library-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.library-btn {
+    display: block;
+    padding: 10px 40px;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: #fff;
+    font: bold 20px var(--inter-font);
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 1s;
+}
+.library-btn:hover,
+.acc-btn:hover {
+    background-color: #BB945F;
+    border: none;
+}
+.get-card {
+    flex-basis: 456px;
+}
+.get-card-header {
+    font: 30px var(--forum-font);
+    letter-spacing: 0.6px;
+    text-align: end;
+}
+.get-card-info {
+    margin: 35px 0;
+    font-size: 20px;
+    line-height: 40px;
+    letter-spacing: 0.4px;
+    text-align: end;
+}
+.acc-btns {
+    display: flex;
+    justify-content: end;
+}
+.acc-btn {
+    display: block;
+    width: 75px;
+    padding: 8px 13px;
+    margin-left: 20px;
+    font: bold 10px var(--inter-font);
+    letter-spacing: 1px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 1s;
+}
+
+/* Footer */
+
+.footer {
+    padding: 20px;
+    height: 250px;
+    background-color: #0C0C0E;
+}
+.footer-data {
+    display: flex;
+    justify-content: space-between;
+}
+.addres-to-connect {
+    flex-basis: 229px;
+}
+.address,
+.weekdays,
+.weekend {
+    font: 15px var(--inter-font);
+    line-height: 20px;
+    text-decoration: none;
+    color: #fff;
+}
+.social-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    height: 24px;
+    width: 102px;
+}
+.working-day {
+    flex-basis: 149px;
+}
+.weekdays {
+    margin-bottom: 10px;
+}
+.weekdays,
+.weekend {
+    text-align: end;
+}
+.footer-line {
+    margin-top: 30px;
+    margin-bottom: 44px;
+    height: 1px;
+    width: 100%;
+    background-color: #fff;
+}
+.footer-rss {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 2px;
+    color: #fff;
+}
+.author,
+.rss {
+    font: 20px var(--inter-font);
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #fff;
+}
