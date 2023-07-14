@@ -179,7 +179,7 @@ p {
 .carousel-pagination {
     display: flex;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 35px;
     width: 78px;
     height: 26px;
 }
@@ -287,7 +287,8 @@ p {
 .book-buy {
     position: absolute;
     bottom: 15px;
-    padding: 9px 27px;
+    width: 75px;
+    height: 30px;
     font: bold 10px var(--inter-font);
     letter-spacing: 1px;
     background-color: #fff;
@@ -358,6 +359,7 @@ p {
 }
 .menu-item .price {
     float: right;
+    font-family: var(--forum-font);
 }
 .menu-item .price::before {
     content: '';
@@ -426,17 +428,19 @@ p {
 }
 .library-card-form {
     margin-top: 30px;
-    padding: 20px;
-    padding-bottom: 30px;
+    padding: 18px;
+    padding-bottom: 28px;
     height: 386px;
     max-width: 600px;
     border: 3px solid #BB945F;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 .input-block {
     width: 100%;
     padding: 20px;
     padding-bottom: 25px;
     background-color: #BB945F;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 .input-block,
 .library-input {
@@ -455,6 +459,9 @@ p {
 .library-input::placeholder {
     color: #8E8E8E;
 }
+.library-input[type="number"] {
+    margin-top: 25px;
+}
 .library-input[type="number"]::-moz-focus-inner {
     -moz-appearance: textfield;
 }
@@ -463,7 +470,8 @@ p {
 }
 .library-btn {
     display: block;
-    padding: 10px 40px;
+    width: 242px;
+    height: 44px;
     margin: 0 auto;
     margin-top: 20px;
     background-color: #fff;
@@ -536,6 +544,12 @@ p {
     margin-top: 18px;
     height: 24px;
     width: 102px;
+    list-style: none;
+}
+.social-link {
+    display: block;
+    width: 24px;
+    text-align: center;
 }
 .working-day {
     flex-basis: 149px;
