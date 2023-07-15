@@ -248,14 +248,17 @@ p {
     justify-content: space-between;
     align-content: space-between;
     flex-wrap: wrap;
-    overflow: hidden;
 }
-.book {
+.book.showed {
+    display: block;
     position: relative;
     padding-right: 40px;
     margin-bottom: 40px;
     flex-basis: 590px;
     height: 555px;
+}
+.book {
+    display: none;
 }
 .book .border-line {
     margin: 0 0 20px 0;
