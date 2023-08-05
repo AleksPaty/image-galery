@@ -33,18 +33,19 @@ p {
     justify-content: space-between;
 }
 .logo {
-    text-decoration: none;
-    color: #fff;
+    flex-grow: 1;
 }
-.logo h1 {
+.logo a {
     font-weight: 400;
     font-size: 30px;
     line-height: 50px;
     letter-spacing: 0.61px;
+    text-decoration: none;
+    color: #fff;
 }
 .header-nav {
     flex-basis: 584px;
-    margin-right: 68px;
+    margin-right: 40px;
 }
 .nav-list {
     display: flex;
@@ -65,12 +66,13 @@ p {
     height: 49px;
     border-bottom: #fff solid 1px;
 }
+.menu-btn {
+    display: none;
+}
 .profile {
     align-self: center;
     width: 28px;
     height: 28px;
-    position: absolute;
-    right: 20px;
 }
 .profile .icon_profile {
     cursor: pointer;
@@ -101,8 +103,7 @@ p {
 .profile-dropMenu.active {
     display: block;
     position: absolute;
-    top: 59px;
-    right: -20px;
+    right: 0;
     z-index: 1;
     background-color: #fff;
 }
@@ -164,18 +165,27 @@ p {
     max-width: 1400px;
     overflow: hidden;
 }
+.carousel-left,
+.carousel-right {
+    display: none;
+}
 .image-line {
     display: flex;
     justify-content: space-between;
     height: 560px;
-    width: 2350px;
+    gap: 5px;
 }
 .image-line .img-item {
+    display: none;
     height: 560px;
     max-width: 450px;
 }
-.img-item img {
+.img-item .img {
     width: 100%;
+    height: 100%;
+}
+.image-line .img-item.onView {
+    display: block;
 }
 .carousel-pagination {
     display: flex;
@@ -189,6 +199,9 @@ p {
     height: 26px;
     width: 26px;
     cursor: pointer;
+}
+.pagination-dot.tablet {
+    display: none;
 }
 .pagination-dot .show {
     position: absolute;
@@ -225,13 +238,11 @@ p {
     font-size: 20px;
 }
 .seasons-form .seasons {
+    display: flex;
+    justify-content: space-between;
     width: 700px;
 }
-.seasons .ml0 {
-    margin-left: 0;
-}
 .seasons input {
-    margin-left: 85px;
     margin-right: 15px;
     height: 17px;
     width: 17px;
@@ -255,7 +266,7 @@ p {
     position: relative;
     padding-right: 40px;
     margin-bottom: 40px;
-    flex-basis: 590px;
+    width: 590px;
     height: 555px;
 }
 .book {
@@ -278,13 +289,14 @@ p {
 .book-name {
     text-transform: uppercase;
 }
-.book-name, .author, .book-description {
+.book-name, .book-author, .book-description {
     font: bold 15px var(--inter-font);
     line-height: 40px;
     letter-spacing: 2px;
 }
 .book-description {
-    max-width: 355px;
+    max-width: 357px;
+    margin-top: 20px;
     font-weight: 400;
     text-transform: capitalize;
 }
@@ -334,7 +346,7 @@ p {
     height: 520px;
 }
 .coffe-tea {
-    flex-basis: 438px;
+    width: 438px;
 }
 .desert {
     flex-basis: 482px;
@@ -348,10 +360,12 @@ p {
 .menu-list-header.right {
     text-align: end;
 }
-.drink-list {
+.drink-list,
+.desert-list {
     list-style: none;
 }
 .menu-item {
+    display: flex;
     margin-top: 40px;
     height: 40px;
 }
@@ -362,6 +376,7 @@ p {
     letter-spacing: 2px;
 }
 .menu-item .price {
+    margin-left: 57px;
     float: right;
     font-family: var(--forum-font);
 }
@@ -374,8 +389,11 @@ p {
     width: 100px;
     background-color: #BB945F;
 }
-.desert-list {
-    list-style: none;
+.desert-list .menu-item {
+    justify-content: end;
+}
+.coffe-tea .menu-item {
+    justify-content: space-between;
 }
 
 .contacts {
@@ -405,6 +423,10 @@ p {
     height: 160px;
     margin: 40px 0;
 }
+.phone-info a {
+    text-decoration: none;
+    color:#000
+}
 .text-info .member {
     display: flex;
     flex-direction: column;
@@ -412,7 +434,11 @@ p {
     height: 100px;
 }
 .location-map {
-    flex-basis: 696px;
+    max-width: 696px;
+}
+.location-map img {
+    height: 100%;
+    width: 100%;
 }
 
 .library-card {
@@ -491,18 +517,17 @@ p {
 }
 .get-card {
     flex-basis: 456px;
+    text-align: end;
 }
 .get-card-header {
     font: 30px var(--forum-font);
     letter-spacing: 0.6px;
-    text-align: end;
 }
 .get-card-info {
     margin: 35px 0;
     font-size: 20px;
     line-height: 40px;
     letter-spacing: 0.4px;
-    text-align: end;
 }
 .acc-btns {
     display: flex;
@@ -587,4 +612,178 @@ p {
     letter-spacing: 2px;
     text-decoration: none;
     color: #fff;
+}
+
+/* response */
+@media (max-width: 1240px) {
+    .favorites {
+        height: max-content;
+    }
+    .favorite-books {
+        height: max-content;
+        flex-direction: column;
+        align-content: center;
+        margin-bottom: -40px;
+    }
+
+    .contacts {
+        height: 1055px;
+    }
+    .contacts-info {
+        height: max-content;
+        flex-direction: column;
+    }
+    .location-map {
+        margin-top: 100px;
+        align-self: center;
+    }
+}
+
+@media (max-width: 1023px) {
+    /* burger menu */
+    .header-nav {
+        flex-basis: content;
+        margin-right: 0;
+        margin-left: 40px;
+        order: 1;
+    }
+    .nav-list {
+        position: absolute;
+        clear: right;
+        right: 0;
+        height: 0;
+        width: 332px;
+        flex-direction: column;
+        overflow-y: hidden;
+        z-index: 2;
+        background-color: #0C0C0E;
+        transition: all 200ms ease-out;
+    }
+    .nav-item a {
+        margin: 0 auto;
+    }
+    .menu-btn {
+        display: block;
+        width: 45px;
+        height: 50px;
+    }
+    .menu-btn.show-menu ~ .nav-list {
+        display: flex;
+        height: 520px;
+        padding: 50px 106px 100px 106px;
+    }
+    .menu-btn.show-menu .nav-item {
+        display: block;
+    }
+    .menu-btn .burger-icon {
+        position: relative;
+        transform: translateY(24px);
+        width: 45px;
+        height: 2px;
+    }
+    .menu-btn .burger-icon,
+    .menu-btn .burger-icon::before,
+    .menu-btn .burger-icon::after {
+        display: block;
+        background-color: #fff;
+    }
+    .menu-btn .burger-icon::before,
+    .menu-btn .burger-icon::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        transition: all 200ms ease-out;
+    }
+    .menu-btn .burger-icon::before {
+        top: -10px;
+    }
+    .menu-btn .burger-icon::after {
+        top: 10px;
+    }
+    .menu-btn.show-menu .burger-icon {
+        background-color: transparent;
+    }
+    .menu-btn.show-menu .burger-icon::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+    .menu-btn.show-menu .burger-icon::after {
+        top: 0;
+        transform: rotate(-45deg);
+    }
+    /* end burger menu */
+
+    .library-card {
+        height: 857px;
+    }
+    .manage-card {
+        height: max-content;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .get-card {
+        max-width: 600px;
+        text-align: center;
+    }
+    .get-card-info {
+        margin: 40px 0;
+    }
+    .acc-btns {
+        justify-content: center;
+        margin-left: -20px;
+    }
+}
+
+@media (max-width: 985px) {
+    .welcome {
+        background: no-repeat url('../image/Welcome-tablet.png');
+        background-size: cover;
+    }
+
+    .about {
+        height: 862px;
+    }
+    .carousel {
+        max-width: 568px;
+        margin: 0 auto;
+    }
+    .view-fild {
+        width: 568px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .image-line {
+        width: 450px;
+        flex-wrap: wrap;
+        overflow-y: hidden;
+    }
+    .carousel-left,
+    .carousel-right {
+        display: block;
+        align-self: center;
+        margin-top: 45px;
+    }
+    .carousel-pagination {
+        width: calc(78px + 52px);
+        margin-top: 20px;
+    }
+    .pagination-dot.tablet {
+        display: block;
+    }
+
+    .coffe-shop {
+        height: 1481px;
+    }
+    .menu-list {
+        flex-direction: column;
+        gap: 40px
+    }
+}
+
+@media (max-width: 750px) {
+    .seasons-form .seasons {
+        width: 600px;
+    }
 }

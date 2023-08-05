@@ -14,10 +14,14 @@
 <body>
     <header class="header outer-wrapper">
         <div class="flex-wrapper">
-            <a href="#" class="logo">
+            <h1 class="logo">
+                <a href="#">Brooklyn Public Library</a>
+            </h1>
+            <!-- <a href="#" class="logo">
                 <h1>Brooklyn Public Library</h1>
-            </a>
+            </a> -->
             <nav class="header-nav">
+                <a class="menu-btn" href=""><span class="burger-icon"></span></a>
                 <ul class="nav-list">
                     <li class="nav-item"><a href="#about">About</a></li>
                     <li class="nav-item"><a href="#favorites">Favorites</a></li>
@@ -56,21 +60,29 @@
                 </p>
             </div>
             <div class="carousel">
-                <div class="image-line">
-                    <div class="img-item">
-                        <img src="./image/carusel/image_1.png" alt="img1">
+                <div class="view-fild">
+                    <div class="carousel-left">
+                        <img src="./image/carusel/Arrow-left.png" alt="inLeft">
                     </div>
-                    <div class="img-item">
-                        <img class="img" src="./image/carusel/image_2.png" alt="img2">
+                    <div class="image-line">
+                        <div class="img-item onView">
+                            <img class="img" src="./image/carusel/image_1.png" alt="img1">
+                        </div>
+                        <div class="img-item onView">
+                            <img class="img" src="./image/carusel/image_2.png" alt="img2">
+                        </div>
+                        <div class="img-item onView">
+                            <img class="img" src="./image/carusel/image_3.png" alt="img3">
+                        </div>
+                        <div class="img-item">
+                            <img class="img" src="./image/carusel/image_4.png" alt="img4">
+                        </div>
+                        <div class="img-item">
+                            <img class="img" src="./image/carusel/image_5.png" alt="img5">
+                        </div>
                     </div>
-                    <div class="img-item">
-                        <img class="img" src="./image/carusel/image_3.png" alt="img3">
-                    </div>
-                    <div class="img-item">
-                        <img class="img" src="./image/carusel/image_4.png" alt="img4">
-                    </div>
-                    <div class="img-item">
-                        <img class="img" src="./image/carusel/image_5.png" alt="img5">
+                    <div class="carousel-right">
+                        <img src="./image/carusel/Arrow-right.png" alt="inRight">
                     </div>
                 </div>
                 <div class="carousel-pagination">
@@ -81,6 +93,12 @@
                         <span class="show"></span>
                     </div>
                     <div class="pagination-dot">
+                        <span class="show"></span>
+                    </div>
+                    <div class="pagination-dot tablet">
+                        <span class="show"></span>
+                    </div>
+                    <div class="pagination-dot tablet">
                         <span class="show"></span>
                     </div>
                 </div>
@@ -94,17 +112,22 @@
             <div class="seasons-form">
                 <p class="quest">Pick favorites of season</p>
                 <form class="seasons">
-                    <input class="ml0" type="radio" name="season" id="wint" checked>
-                    <label for="wint">Winter</label>
-
-                    <input type="radio" name="season" id="spr">
-                    <label for="spr">Spring</label>
-
-                    <input type="radio" name="season" id="sum">
-                    <label for="sum">Summer</label>
-                    
-                    <input type="radio" name="season" id="aut">
-                    <label for="aut">Autumn</label>
+                    <div class="season-type">
+                        <input type="radio" name="season" id="wint" checked>
+                        <label for="wint">Winter</label>
+                    </div>
+                    <div class="season-type">
+                        <input type="radio" name="season" id="spr">
+                        <label for="spr">Spring</label>
+                    </div>
+                    <div class="season-type">
+                        <input type="radio" name="season" id="sum">
+                        <label for="sum">Summer</label>
+                    </div>
+                    <div class="season-type">
+                        <input type="radio" name="season" id="aut">
+                        <label for="aut">Autumn</label>
+                    </div>
                 </form>
             </div>
             <div class="favorite-books">
@@ -113,7 +136,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">The Book Eaters</h3>
-                        <p class="author">By Sunyi Dean</p>
+                        <p class="book-author">By Sunyi Dean</p>
                         <p class="book-description">
                             An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death.
                             Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.
@@ -129,7 +152,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Cackle</h3>
-                        <p class="author">By Rachel Harrison</p>
+                        <p class="book-author">By Rachel Harrison</p>
                         <p class="book-description">
                             Are your Halloween movies of choice The Witches of Eastwick and Practical Magic?
                             Look no further than here - where a woman recovering from a breakup moves to a quaint town in upstate New York and befriends a beautiful witch.
@@ -145,7 +168,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Dante: Poet of the Secular World</h3>
-                        <p class="author">By Erich Auerbach</p>
+                        <p class="book-author">By Erich Auerbach</p>
                         <p class="book-description">
                             Auerbach's engaging book places the 'Comedy' within the tradition of epic, tragedy,
                             and philosophy in general, arguing for Dante's uniqueness as one who raised the individual and his drama of soul into something of divine significance—an inspired introduction to Dante's main themes.
@@ -161,7 +184,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">The Last Queen</h3>
-                        <p class="author">By Clive Irving</p>
+                        <p class="book-author">By Clive Irving</p>
                         <p class="book-description">
                             A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.
                         </p>
@@ -176,7 +199,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">The Body</h3>
-                        <p class="author">By Stephen King</p>
+                        <p class="book-author">By Stephen King</p>
                         <p class="book-description">
                             Powerful novel that takes you back to a nostalgic time,
                             exploring both the beauty and danger and loss of innocence that is youth.
@@ -192,7 +215,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Carry: A Memoir of Survival on Stolen Land</h3>
-                        <p class="author">By Toni Jenson</p>
+                        <p class="book-author">By Toni Jenson</p>
                         <p class="book-description">
                             This memoir about the author's relationship with gun violence feels both expansive and intimate,
                             resulting in a lyrical indictment of the way things are.
@@ -208,7 +231,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Days of Distraction</h3>
-                        <p class="author">By Alexandra Chang</p>
+                        <p class="book-author">By Alexandra Chang</p>
                         <p class="book-description">
                             A sardonic view of Silicon Valley culture, a meditation on race,
                             and a journal of displacement and belonging, all in one form-defying package of spare prose.
@@ -224,7 +247,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Dominicana</h3>
-                        <p class="author">By Angie Cruz</p>
+                        <p class="book-author">By Angie Cruz</p>
                         <p class="book-description">
                             A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America.
                             Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
@@ -240,7 +263,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Crude: A Memoir</h3>
-                        <p class="author">By Pablo Fajardo & ​​Sophie Tardy-Joubert</p>
+                        <p class="book-author">By Pablo Fajardo & ​​Sophie Tardy-Joubert</p>
                         <p class="book-description">
                             Drawing and color by Damien Roudeau | This book illustrates the struggles of a group of
                             indigenous Ecuadoreans as they try to sue the ChevronTexaco company for damage their oil fields did to the Amazon and her people
@@ -256,7 +279,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Let My People Go Surfing</h3>
-                        <p class="author">By Yvon Chouinard</p>
+                        <p class="book-author">By Yvon Chouinard</p>
                         <p class="book-description">
                             Chouinard—climber, businessman, environmentalist—shares tales of courage and persistence from his experience of founding and leading Patagonia,
                             Inc. Full title: Let My People Go Surfing: The Education of a Reluctant Businessman, Including 10 More Years of Business Unusual.
@@ -272,7 +295,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">The Octopus Museum: Poems</h3>
-                        <p class="author">By Brenda Shaughnessy</p>
+                        <p class="book-author">By Brenda Shaughnessy</p>
                         <p class="book-description">
                             This collection of bold and scathingly beautiful feminist poems imagines what comes
                             after our current age of environmental destruction, racism, sexism, and divisive politics.
@@ -288,7 +311,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Shark Dialogues: A Novel</h3>
-                        <p class="author">By Kiana Davenport</p>
+                        <p class="book-author">By Kiana Davenport</p>
                         <p class="book-description">
                             An epic saga of seven generations of one family encompasses the tumultuous history of Hawaii as a Hawaiian woman
                             gathers her four granddaughters together in an erotic tale of villains and dreamers, queens and revolutionaries, lepers and healers.
@@ -304,7 +327,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Casual Conversation</h3>
-                        <p class="author">By Renia White</p>
+                        <p class="book-author">By Renia White</p>
                         <p class="book-description">
                             White's impressive debut collection takes readers through and beyond the concepts of conversation and the
                             casual - both what we say to each other and what we don't, examining the possibilities around how we construct and communicate identity. 
@@ -320,7 +343,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">The Great Fire</h3>
-                        <p class="author">By Lou Ureneck</p>
+                        <p class="book-author">By Lou Ureneck</p>
                         <p class="book-description">
                             The harrowing story of an ordinary American and a principled Naval officer who, horrified by the burning of Smyrna,
                             led an extraordinary rescue effort that saved a quarter of a million refugees from the Armenian Genocide
@@ -336,7 +359,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Rickey: The Life and Legend</h3>
-                        <p class="author">By Howard Bryant</p>
+                        <p class="book-author">By Howard Bryant</p>
                         <p class="book-description">
                             With the fall rolling around, one can't help but think of baseball's postseason coming up!
                             And what better way to prepare for it than reading the biography of one of the game's all-time greatest performers, the Man of Steal, Rickey Henderson?
@@ -352,7 +375,7 @@
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
                         <h3 class="book-name">Slug: And Other Stories</h3>
-                        <p class="author">By Megan Milks</p>
+                        <p class="book-author">By Megan Milks</p>
                         <p class="book-description">
                             Exes Tegan and Sara find themselves chained together by hairballs of codependency.
                             A father and child experience the shared trauma of giving birth to gods from their wounds.
@@ -446,7 +469,7 @@
                 <div class="text-info">
                     <h4 class="text-info-header">For all Library inquiries:</h4>
                     <div class="phone-info">
-                        <p class="phone">Please call <a href="tel:+(617)-730-2370">(617) 730-2370</a></p>
+                        <p class="phone">Please Call <a href="tel:+(617)-730-2370">(617) 730-2370</a></p>
                         <p class="phone">For TTY Service, Please Call <a href="tel:+(617)-730-2370">(617) 730-2370</a></p>
                         <p class="phone">Putterham Library: <a href="tel:+(617)-730-2385">(617) 730-2385</a></p>
                     </div>
