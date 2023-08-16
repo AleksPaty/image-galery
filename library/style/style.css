@@ -78,8 +78,13 @@ p {
     cursor: pointer;
 }
 .profile .profile-dropMenu {
-    display: none;
+    position: absolute;
+    right: 0;
+    height: 0;
+    width: 80px;
+    overflow-y: hidden;
     font-family: var(--inter-font);
+    transition: all .4s ease-out;
 }
 .profile-dropMenu .dropMenu-header {
     padding: 5px 16px;
@@ -90,7 +95,12 @@ p {
     border-bottom: 1px solid #BB945F;
 }
 .dropMenu-body {
-    padding: 10px 11px 10px 10px;
+    padding: 15px 10px 20px 10px;
+}
+.dropMenu_item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     list-style: none;
 }
 .dropMenu-item {
@@ -101,9 +111,7 @@ p {
     color: #000;
 }
 .profile-dropMenu.active {
-    display: block;
-    position: absolute;
-    right: 0;
+    height: 115px;
     z-index: 1;
     background-color: #fff;
 }
@@ -171,10 +179,20 @@ p {
 }
 .image-line {
     display: flex;
+    position: relative;
     justify-content: space-between;
     height: 560px;
     gap: 5px;
 }
+.move-left {
+    animation-name: move-left;
+    animation-duration: 1s;
+}
+.move-right {
+    animation-name: move-right;
+    animation-duration: 1s;
+}
+
 .image-line .img-item {
     display: none;
     height: 560px;
@@ -764,6 +782,7 @@ p {
         display: block;
         align-self: center;
         margin-top: 45px;
+        cursor: pointer;
     }
     .carousel-pagination {
         width: calc(78px + 52px);
@@ -786,4 +805,13 @@ p {
     .seasons-form .seasons {
         width: 600px;
     }
+}
+
+@keyframes move-left {
+    from {left: 450px;}
+    to {left: 0px;}
+}
+@keyframes move-right {
+    from {right: 450px;}
+    to {right: 0px;}
 }
