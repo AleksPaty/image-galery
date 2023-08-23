@@ -84,12 +84,14 @@ p {
     width: 80px;
     overflow-y: hidden;
     font-family: var(--inter-font);
-    transition: all .4s ease-out;
+    transition: all 200ms ease-out;
 }
 .profile-dropMenu .dropMenu-header {
     padding: 5px 16px;
+    overflow-y: hidden;
 }
 .dropMenu-header h3 {
+    display: none;
     font-size: 15px;
     line-height: 20px;
     border-bottom: 1px solid #BB945F;
@@ -115,7 +117,9 @@ p {
     z-index: 1;
     background-color: #fff;
 }
-
+.profile-dropMenu.active .dropMenu-header h3 {
+    display: inline-block;
+}
 /* Main */
 
 .welcome {
@@ -147,6 +151,7 @@ p {
 }
 .section-title h2 {
     font-size: 40px;
+    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
     color: #0C0C0E;
@@ -182,19 +187,20 @@ p {
     position: relative;
     justify-content: space-between;
     height: 560px;
-    gap: 5px;
+    width: calc(100% + 67.857%);
+    gap: 25px;
+    transition: all 0.5s;
 }
 .move-left {
     animation-name: move-left;
-    animation-duration: 1s;
+    animation-duration: 0.6s;
 }
 .move-right {
     animation-name: move-right;
-    animation-duration: 1s;
+    animation-duration: 0.6s;
 }
 
 .image-line .img-item {
-    display: none;
     height: 560px;
     max-width: 450px;
 }
@@ -247,18 +253,17 @@ p {
     padding-bottom: 0;
 }
 .seasons-form {
-    height: 128px;
-    padding-bottom: 40px;
+    margin-bottom: 40px;
 }
 .seasons-form .quest {
-    margin-bottom: 40px;
     font-weight: bold;
     font-size: 20px;
 }
-.seasons-form .seasons {
+.seasons {
     display: flex;
     justify-content: space-between;
     width: 700px;
+    margin-bottom: 40px;
 }
 .seasons input {
     margin-right: 15px;
@@ -279,15 +284,35 @@ p {
     align-content: space-between;
     flex-wrap: wrap;
 }
-.book.showed {
-    display: block;
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+.book.fade-in {
+    animation-name: fade-in;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+}
+.book.fade-out {
+    animation-name: fade-out;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+}
+.book {
     position: relative;
     padding-right: 40px;
     margin-bottom: 40px;
     width: 590px;
     height: 555px;
 }
-.book {
+.book.showed {
+    display: block;
+}
+.book.hided {
     display: none;
 }
 .book .border-line {
@@ -327,6 +352,7 @@ p {
     letter-spacing: 1px;
     background-color: #fff;
     border-color: #0C0C0E;
+    border-radius: 2px;
     color: #0C0C0E;
     cursor: pointer;
     transition: all 1000ms;
@@ -631,11 +657,146 @@ p {
     text-decoration: none;
     color: #fff;
 }
+/* modals windows */
+
+.modal-space {
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(142, 142, 142, 0.5);
+    z-index: 10;
+}
+.modal-space.open {
+    display: block;
+}
+.register-form,
+.login-form {
+    display: none;
+    padding: 20px 25px;
+    background-color: #fff;
+}
+.register-form {
+    height: 382px;
+    width: 250px;
+    margin: calc(50vh - 191px) auto;
+}
+.login-form {
+    height: 262px;
+    width: 250px;
+    margin: calc(50vh - 131px) auto;
+}
+.register-form.open,
+.login-form.open {
+    display: block;
+}
+.register-form_header,
+.login-form_header {
+    position: relative;
+}
+.register-form_title,
+.login-form_title {
+    font-family: var(--forum-font);
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.register-form_btn-close,
+.login-form_btn-close {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+.register-form_cross,
+.login-form_cross {
+    display: block;
+    height: 3px;
+    width: 21px;
+    transform: rotate(45deg);
+    background-color: #0C0C0E;
+}
+.register-form_cross::after,
+.login-form_cross::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 21px;
+    transform: rotate(90deg);
+    background-color: #0C0C0E;
+}
+.register-form_body,
+.login-form_body {
+    height: 280px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: var(--inter-font);
+}
+.login-form_body {
+    height: 160px;
+}
+.register-form_body label,
+.login-form_body label {
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+}
+.register-form_body input,
+.login-form_body input {
+    margin-top: 9px;
+    margin-bottom: 10px;
+    height: 20px;
+    width: 100%;
+    border: 1px solid #BB945F;
+}
+.register-form_signUp,
+.login-form_logIn {
+    margin-top: 10px;
+    height: 30px;
+    width: 75px;
+    background-color: #fff;
+    font-family: var(--inter-font);
+    font-weight: bold;
+    font-size: 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.register-form_footer,
+.login-form_footer {
+    font-family: var(--inter-font);
+    font-size: 10px;
+}
+.register-form_footer span,
+.login-form_footer span {
+    margin-right: 10px;
+}
+.register-form_footer a,
+.login-form_footer a {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #0C0C0E;
+}
+
 
 /* response */
 @media (max-width: 1240px) {
+    .image-line {
+        gap: 10px;
+    }
+    
     .favorites {
         height: max-content;
+    }
+    .seasons {
+        position: sticky;
+        top: 5px;
+        z-index: 1;
     }
     .favorite-books {
         height: max-content;
@@ -764,18 +925,18 @@ p {
         height: 862px;
     }
     .carousel {
+        display: flex;
         max-width: 568px;
         margin: 0 auto;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
     .view-fild {
-        width: 568px;
-        display: flex;
-        justify-content: space-between;
+        width: 450px;
+        overflow-x: hidden;
     }
     .image-line {
-        width: 450px;
-        flex-wrap: wrap;
-        overflow-y: hidden;
+        width: max-content;
     }
     .carousel-left,
     .carousel-right {

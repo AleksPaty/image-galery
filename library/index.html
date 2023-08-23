@@ -35,8 +35,8 @@
                     </div>
                     <div class="dropMenu-body">
                         <ul class="dropMenu_item-list">
-                            <li class="dropMenu-item"><a href="#">Log in</a></li>
-                            <li class="dropMenu-item"><a href="#">Register</a></li>
+                            <li class="dropMenu-item"><a id="login-btn" href="">Log in</a></li>
+                            <li class="dropMenu-item"><a id="registr-btn" href="">Register</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,10 +59,10 @@
                 </p>
             </div>
             <div class="carousel">
+                <div class="carousel-left">
+                    <img src="./image/carusel/Arrow-left.png" alt="inLeft">
+                </div>
                 <div class="view-fild">
-                    <div class="carousel-left">
-                        <img src="./image/carusel/Arrow-left.png" alt="inLeft">
-                    </div>
                     <div class="image-line">
                         <div class="img-item onView">
                             <img class="img" src="./image/carusel/image_1.png" alt="img1">
@@ -80,9 +80,9 @@
                             <img class="img" src="./image/carusel/image_5.png" alt="img5">
                         </div>
                     </div>
-                    <div class="carousel-right">
-                        <img src="./image/carusel/Arrow-right.png" alt="inRight">
-                    </div>
+                </div>
+                <div class="carousel-right">
+                    <img src="./image/carusel/Arrow-right.png" alt="inRight">
                 </div>
                 <div class="carousel-pagination">
                     <div class="pagination-dot">
@@ -110,25 +110,25 @@
             </div>
             <div class="seasons-form">
                 <p class="quest">Pick favorites of season</p>
-                <form class="seasons">
-                    <div class="season-type">
-                        <input type="radio" name="season" id="wint" checked>
-                        <label for="wint">Winter</label>
-                    </div>
-                    <div class="season-type">
-                        <input type="radio" name="season" id="spr">
-                        <label for="spr">Spring</label>
-                    </div>
-                    <div class="season-type">
-                        <input type="radio" name="season" id="sum">
-                        <label for="sum">Summer</label>
-                    </div>
-                    <div class="season-type">
-                        <input type="radio" name="season" id="aut">
-                        <label for="aut">Autumn</label>
-                    </div>
-                </form>
             </div>
+            <form class="seasons">
+                <div class="season-type">
+                    <input type="radio" name="season" id="wint" checked>
+                    <label for="wint">Winter</label>
+                </div>
+                <div class="season-type">
+                    <input type="radio" name="season" id="spr">
+                    <label for="spr">Spring</label>
+                </div>
+                <div class="season-type">
+                    <input type="radio" name="season" id="sum">
+                    <label for="sum">Summer</label>
+                </div>
+                <div class="season-type">
+                    <input type="radio" name="season" id="aut">
+                    <label for="aut">Autumn</label>
+                </div>
+            </form>
             <div class="favorite-books">
                 <div class="book winter showed">
                     <div class="book-review">
@@ -193,7 +193,7 @@
                         <img src="./image/book-cover/Last-queen.png" alt="The Last Queen">
                     </div>
                 </div>
-                <div class="book spring">
+                <div class="book spring hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -209,7 +209,7 @@
                         <img src="./image/book-cover/body.png" alt="The Body">
                     </div>
                 </div>
-                <div class="book spring">
+                <div class="book spring hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -225,7 +225,7 @@
                         <img src="./image/book-cover/carry.png" alt="Carry">
                     </div>
                 </div>
-                <div class="book spring">
+                <div class="book spring hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -241,7 +241,7 @@
                         <img src="./image/book-cover/DofD.png" alt="Days of Distraction">
                     </div>
                 </div>
-                <div class="book spring">
+                <div class="book spring hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -257,7 +257,7 @@
                         <img src="./image/book-cover/dominicana.png" alt="Dominicana">
                     </div>
                 </div>
-                <div class="book summer">
+                <div class="book summer hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -273,7 +273,7 @@
                         <img src="./image/book-cover/crude.png" alt="Crude: A Memoir">
                     </div>
                 </div>
-                <div class="book summer">
+                <div class="book summer hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -289,7 +289,7 @@
                         <img src="./image/book-cover/people.png" alt="Let My People Go Surfing">
                     </div>
                 </div>
-                <div class="book summer">
+                <div class="book summer hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -305,7 +305,7 @@
                         <img src="./image/book-cover/octopus.png" alt="The Octopus Museum">
                     </div>
                 </div>
-                <div class="book summer">
+                <div class="book summer hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -321,7 +321,7 @@
                         <img src="./image/book-cover/shark.png" alt="Shark Dialogues">
                     </div>
                 </div>
-                <div class="book autumn">
+                <div class="book autumn hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -337,7 +337,7 @@
                         <img src="./image/book-cover/casual.png" alt="Casual Conversation">
                     </div>
                 </div>
-                <div class="book autumn">
+                <div class="book autumn hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -353,7 +353,7 @@
                         <img src="./image/book-cover/great-fire.png" alt="The Great Fire">
                     </div>
                 </div>
-                <div class="book autumn">
+                <div class="book autumn hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -369,7 +369,7 @@
                         <img src="./image/book-cover/rickey.png" alt="Rickey">
                     </div>
                 </div>
-                <div class="book autumn">
+                <div class="book autumn hided">
                     <div class="book-review">
                         <span class="staff-pick-teg">Staff Picks</span>
                         <div class="border-line"></div>
@@ -503,8 +503,8 @@
                         You will be able to see a reader card after logging into account or you can register a new account
                     </p>
                     <div class="acc-btns">
-                        <button class="acc-btn" type="button">Sign Up</button>
-                        <button class="acc-btn" type="button">Log in</button>
+                        <button class="acc-btn" id="registr-btn2" type="button">Sign Up</button>
+                        <button class="acc-btn" id="login-btn2" type="button">Log in</button>
                     </div>
                 </div>
             </div>
@@ -533,6 +533,66 @@
             <a class="author" href="https://github.com/AleksPaty">Alexander</a>
         </div>
     </footer>
+    <div class="modal-space">
+        <div class="register-form">
+            <div class="register-form_header">
+                <h3 class="register-form_title">Register</h3>
+                <div class="register-form_btn-close">
+                    <span class="register-form_cross"></span>
+                </div>
+            </div>
+            <div class="register-form_body">
+                <form action="/" method="post">
+                    <label for="firstName">
+                        First name
+                        <input type="text" name="firstName" id="firstName">
+                    </label>
+                    <label for="lastName">
+                        Last name
+                        <input type="text" name="lastName" id="lastName">
+                    </label>
+                    <label for="email">
+                        E-mail
+                        <input type="email" name="email" id="email">
+                    </label>
+                    <label for="password">
+                        Password
+                        <input type="password" name="password" id="password">
+                    </label>
+                    <button class="register-form_signUp" type="submit">Sign Up</button>
+                </form>
+            </div>
+            <div class="register-form_footer">
+                <span>Already have an account?</span>
+                <a href="" target="_blank" rel="noopener noreferrer">Login</a>
+            </div>
+        </div>
+        <div class="login-form">
+            <div class="login-form_header">
+                <h3 class="login-form_title">Login</h3>
+                <div class="login-form_btn-close">
+                    <span class="login-form_cross"></span>
+                </div>
+            </div>
+            <div class="login-form_body">
+                <form action="" method="get">
+                    <label for="email">
+                        E-mail or readers card
+                        <input type="text" name="email_or_card" id="email">
+                    </label>
+                    <label for="password">
+                        Password
+                        <input type="password" name="password" id="password">
+                    </label>
+                    <button class="login-form_logIn" type="submit">Log In</button>
+                </form>
+            </div>
+            <div class="login-form_footer">
+                <span>Don’t have an account?</span>
+                <a href="" target="_blank" rel="noopener noreferrer">Register</a>
+            </div>
+        </div>
+    </div>
     <script src="js/main.js"></script>
     <script src="js/index.js"></script>
 </body>
