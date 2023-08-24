@@ -1,20 +1,59 @@
 // --------------------------- usersStorage ---------------------------------// 
-if(!localStorage.getItem('users')) { localStorage.setItem('users', JSON.stringify([])) }
+let isAuthorized = false;
+let currentUser;
 
+if(!localStorage.getItem('users')) { localStorage.setItem('users', JSON.stringify([])) }
+if(localStorage.getItem('authorizedUser')) { 
+    isAuthorized = true; 
+    currentUser = JSON.parse(localStorage.getItem('authorizedUser'))
+}
+console.log(currentUser)
 // --------------------------- profile ---------------------------------// 
-const dropMenu = document.querySelector('.profile-dropMenu')
-const profileIcon = document.querySelector('.profile img')
+let dropMenu = document.querySelector('.profile-dropMenu.notAuth')
+const bodyElem = document.querySelector('main')
+const profileIcon = document.querySelector('.icon_profile')
 const loginBtns = [document.getElementById('login-btn'), document.getElementById('login-btn2')]
 const registrBtns = [document.getElementById('registr-btn'), document.getElementById('registr-btn2')]
 const closeModalBtns = [document.querySelector('.register-form_btn-close'), document.querySelector('.login-form_btn-close')]
+const logOutBtn = document.getElementById('logOut-btn')
 const registrForm = document.querySelector('.register-form_body form')
+const loginForm = document.querySelector('.login-form_body form')
+// ----------------------- functions -----------------------------// 
 const openModalWind = (modal) => {
-    document.querySelector('.modal-space').classList.add('open')
+    let darkWrap = document.querySelector('.modal-space')
+    darkWrap.classList.add('open')
     modal.classList.add('open')
+
+    modal.querySelector('a').onclick = (e) => {
+        e.preventDefault()
+        let modalForOpening = modal.className.includes('register') 
+            ? document.querySelector('.login-form') 
+            : document.querySelector('.register-form')
+        closeModalWind(modal)
+        openModalWind(modalForOpening)
+    }
+
+    darkWrap.onclick = (e) => {
+        if(e.target === e.currentTarget) closeModalWind(modal)
+    }
 }
 const closeModalWind = (modal) => {
-    document.querySelector('.modal-space').classList.remove('open')
+    let darkWrap = document.querySelector('.modal-space')
+    darkWrap.onclick = null
+    modal.querySelector('a').onclick = null
+    darkWrap.classList.remove('open')
     modal.classList.remove('open')
+}
+const generateCardNumber = () => {
+    let arrKeys = ['0', '1', '2', '3', '4', '5', 'A', 'B', 'C', '6', '7', '8', '9', 'D', 'E', 'F']
+    let cardNumber = '';
+    let i = 0;
+    while(i < 9) {
+        let randomKey = Math.floor(Math.random()*100 / 6);
+        cardNumber += arrKeys[randomKey]
+        i++
+    }
+    return cardNumber
 }
 const registrating = (form) => {
     const inputList = form.querySelectorAll('input')
@@ -24,15 +63,70 @@ const registrating = (form) => {
         currentUserObj[input.name] = input.value;
         input.value = ''
     }
+    currentUserObj.cardNumber = generateCardNumber()
+    currentUserObj.visits = 1;
+    currentUserObj.books = []
     usersArr.push(currentUserObj)
     console.log(usersArr)
     console.log(JSON.stringify(currentUserObj))
     localStorage.setItem('users', JSON.stringify(usersArr))
+    localStorage.setItem('authorizedUser', JSON.stringify(currentUserObj))
+    location.reload()
+}
+// localStorage.removeItem('users')
+// localStorage.removeItem('authorizedUser')
+const changeIconFrofile = () => {
+    let userProfileElem = document.createElement('div')
+    let userFirstName = currentUser.firstName;
+    let userLastName = currentUser.lastName;
+
+    userProfileElem.innerText = `${userFirstName[0]}${userLastName[0]}`.toUpperCase()
+    userProfileElem.classList.add('icon_user-profile')
+    profileIcon.removeChild(document.querySelector('.icon_profile img'))
+    profileIcon.append(userProfileElem)
+}
+const enterInProfile = (form) => {
+    let usersArr = JSON.parse(localStorage.getItem('users'))
+    let inputList = form.querySelectorAll('input')
+
+    let currentUserArr = usersArr.filter((user) => {
+        if(inputList[0].value.includes('@')) {
+           return inputList[0].value === user.email && inputList[1].value === user.password 
+        } else {
+           return inputList[0].value.toUpperCase() === user.cardNumber && inputList[1].value === user.password 
+        }
+    })
+    if(currentUserArr.length > 0) {
+        localStorage.setItem('authorizedUser', JSON.stringify(currentUserArr[0]))
+        location.reload()
+    } else {
+        alert('Entered data are wrong!')
+    }
+}
+const doLogOut = () => {
+    localStorage.removeItem('authorizedUser')
+    location.reload()
+}
+// ----------------------- end functions -----------------------------// 
+console.dir(localStorage)
+if(isAuthorized) {
+    dropMenu.classList.add('hide')
+    dropMenu = document.querySelector('.profile-dropMenu.Auth')
+    dropMenu.classList.remove('hide')
+    dropMenu.children[0].children[0].innerHTML = `${JSON.parse(localStorage.authorizedUser).cardNumber}`
+    
+    changeIconFrofile()
 }
 
 profileIcon.addEventListener('click', () => {
     dropMenu.classList.toggle('active')
+    document.querySelector('.menu-btn').classList.remove('show-menu');  // if open burger menu, it will close
+    dropMenu.className.includes('active') 
+        ? bodyElem.onclick = () => dropMenu.classList.remove('active')
+        : bodyElem.onclick = null
 })
+profileIcon.addEventListener('mousedown', (e) => e.target.style.backgroundColor = '#b7b7b7')
+profileIcon.addEventListener('mouseup', (e) => e.target.style.backgroundColor = '')
 
 registrBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -46,9 +140,13 @@ loginBtns.forEach((btn) => {
         e.preventDefault()
         openModalWind(document.querySelector('.login-form'))
         dropMenu.classList.remove('active')
-
     })
 })
+
+if(isAuthorized) { 
+    logOutBtn.addEventListener('click', doLogOut)
+}
+
 closeModalBtns.forEach((btn) => {
     if(btn.className.includes('register')) {
         btn.addEventListener('click', () => closeModalWind(document.querySelector('.register-form')))
@@ -56,22 +154,25 @@ closeModalBtns.forEach((btn) => {
         btn.addEventListener('click', () => closeModalWind(document.querySelector('.login-form')))
     }
 })
+
 registrForm.addEventListener('submit', (e) => {
     e.preventDefault()
     registrating(registrForm)
-    closeModalWind(document.querySelector('.register-form'))
-    console.dir(localStorage)
+})
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    enterInProfile(loginForm)
 })
 
 // --------------------------- burger menu in header -----------------------------// 
 const brgBtn = document.querySelector('.menu-btn')
 const menu = document.querySelector('.nav-list')
-const bodyElem = document.querySelector('main')
 const closeMenu = () => brgBtn.classList.remove('show-menu');
 
 brgBtn.addEventListener('click', (e) => {
     e.preventDefault()
     brgBtn.classList.toggle('show-menu')
+    if(dropMenu.className.includes('active')) dropMenu.classList.remove('active')
 
     brgBtn.className.includes('show-menu')
         ? bodyElem.addEventListener('click', closeMenu)

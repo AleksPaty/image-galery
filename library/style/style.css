@@ -24,7 +24,6 @@ p {
 /* Header */
 
 .header {
-    position: relative;
     height: 90px;
     padding: 20px;
     background-color: #0C0C0E;
@@ -70,12 +69,34 @@ p {
     display: none;
 }
 .profile {
+    position: relative;
     align-self: center;
     width: 28px;
     height: 28px;
 }
+.profile .hide {
+    display: none;
+}
 .profile .icon_profile {
+    width: 28px;
+    height: 28px;
     cursor: pointer;
+    border-radius: 50%;
+}
+.profile .icon_profile img {
+    border-radius: 50%;
+}
+.icon_profile .icon_user-profile {
+    width: 100%;
+    height: 100%;
+    padding: 4px 0;
+    font-family: var(--inter-font);
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    color: #BB945F;
+    background-color: #fff; 
+    border-radius: 50%;
 }
 .profile .profile-dropMenu {
     position: absolute;
@@ -90,6 +111,12 @@ p {
     padding: 5px 16px;
     overflow-y: hidden;
 }
+.profile-dropMenu.Auth .dropMenu-header {
+    padding: 5px 5px;
+}
+.profile-dropMenu.Auth .dropMenu-header h3 {
+    font-size: 11px;
+}
 .dropMenu-header h3 {
     display: none;
     font-size: 15px;
@@ -98,6 +125,11 @@ p {
 }
 .dropMenu-body {
     padding: 15px 10px 20px 10px;
+    font-size: 15px;
+    line-height: 20px;
+}
+.profile-dropMenu.Auth .dropMenu-body {
+    padding: 15px 5px 20px 4px;
 }
 .dropMenu_item-list {
     display: flex;
@@ -253,17 +285,18 @@ p {
     padding-bottom: 0;
 }
 .seasons-form {
-    margin-bottom: 40px;
+    height: 128px;
+    padding-bottom: 40px;
 }
 .seasons-form .quest {
+    margin-bottom: 40px;
     font-weight: bold;
     font-size: 20px;
 }
-.seasons {
+.seasons-form .seasons {
     display: flex;
     justify-content: space-between;
     width: 700px;
-    margin-bottom: 40px;
 }
 .seasons input {
     margin-right: 15px;
@@ -793,10 +826,11 @@ p {
     .favorites {
         height: max-content;
     }
-    .seasons {
+    .seasons-form {
         position: sticky;
-        top: 5px;
+        top: 2px;
         z-index: 1;
+        background-color: rgba(255, 255, 250, 0.5);
     }
     .favorite-books {
         height: max-content;

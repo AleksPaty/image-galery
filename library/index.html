@@ -28,8 +28,10 @@
                 </ul>
             </nav>
             <div class="profile">
-                <img class="icon_profile" src="image/icon_profile.svg" alt="profile">
-                <div class="profile-dropMenu">
+                <div class="icon_profile">
+                    <img src="image/icon_profile.svg" alt="profile">
+                </div>
+                <div class="profile-dropMenu notAuth">
                     <div class="dropMenu-header">
                         <h3>Profile</h3>
                     </div>
@@ -37,6 +39,17 @@
                         <ul class="dropMenu_item-list">
                             <li class="dropMenu-item"><a id="login-btn" href="">Log in</a></li>
                             <li class="dropMenu-item"><a id="registr-btn" href="">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile-dropMenu Auth hide">
+                    <div class="dropMenu-header">
+                        <h3>Profile</h3>
+                    </div>
+                    <div class="dropMenu-body">
+                        <ul class="dropMenu_item-list">
+                            <li class="dropMenu-item"><a id="profile-btn" href="">My profile</a></li>
+                            <li class="dropMenu-item"><a id="logOut-btn" href="">Log Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -110,25 +123,25 @@
             </div>
             <div class="seasons-form">
                 <p class="quest">Pick favorites of season</p>
+                <form class="seasons">
+                    <div class="season-type">
+                        <input type="radio" name="season" id="wint" checked>
+                        <label for="wint">Winter</label>
+                    </div>
+                    <div class="season-type">
+                        <input type="radio" name="season" id="spr">
+                        <label for="spr">Spring</label>
+                    </div>
+                    <div class="season-type">
+                        <input type="radio" name="season" id="sum">
+                        <label for="sum">Summer</label>
+                    </div>
+                    <div class="season-type">
+                        <input type="radio" name="season" id="aut">
+                        <label for="aut">Autumn</label>
+                    </div>
+                </form>
             </div>
-            <form class="seasons">
-                <div class="season-type">
-                    <input type="radio" name="season" id="wint" checked>
-                    <label for="wint">Winter</label>
-                </div>
-                <div class="season-type">
-                    <input type="radio" name="season" id="spr">
-                    <label for="spr">Spring</label>
-                </div>
-                <div class="season-type">
-                    <input type="radio" name="season" id="sum">
-                    <label for="sum">Summer</label>
-                </div>
-                <div class="season-type">
-                    <input type="radio" name="season" id="aut">
-                    <label for="aut">Autumn</label>
-                </div>
-            </form>
             <div class="favorite-books">
                 <div class="book winter showed">
                     <div class="book-review">
@@ -545,19 +558,19 @@
                 <form action="/" method="post">
                     <label for="firstName">
                         First name
-                        <input type="text" name="firstName" id="firstName">
+                        <input type="text" name="firstName" id="firstName" required>
                     </label>
                     <label for="lastName">
                         Last name
-                        <input type="text" name="lastName" id="lastName">
+                        <input type="text" name="lastName" id="lastName" required>
                     </label>
                     <label for="email">
                         E-mail
-                        <input type="email" name="email" id="email">
+                        <input type="email" name="email" id="email" required>
                     </label>
                     <label for="password">
                         Password
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="password" minlength="8">
                     </label>
                     <button class="register-form_signUp" type="submit">Sign Up</button>
                 </form>
@@ -575,14 +588,14 @@
                 </div>
             </div>
             <div class="login-form_body">
-                <form action="" method="get">
+                <form action="" method="post">
                     <label for="email">
                         E-mail or readers card
                         <input type="text" name="email_or_card" id="email">
                     </label>
                     <label for="password">
                         Password
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="password" minlength="8">
                     </label>
                     <button class="login-form_logIn" type="submit">Log In</button>
                 </form>
