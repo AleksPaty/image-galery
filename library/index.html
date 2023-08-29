@@ -34,6 +34,7 @@
                 <div class="profile-dropMenu notAuth">
                     <div class="dropMenu-header">
                         <h3>Profile</h3>
+                        <hr>
                     </div>
                     <div class="dropMenu-body">
                         <ul class="dropMenu_item-list">
@@ -45,6 +46,7 @@
                 <div class="profile-dropMenu Auth hide">
                     <div class="dropMenu-header">
                         <h3>Profile</h3>
+                        <hr>
                     </div>
                     <div class="dropMenu-body">
                         <ul class="dropMenu_item-list">
@@ -200,7 +202,7 @@
                         <p class="book-description">
                             A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.
                         </p>
-                        <button type="button" class="book-buy" disabled>Own</button>
+                        <button type="button" class="book-buy">Buy</button>
                     </div>
                     <div class="book-cover">
                         <img src="./image/book-cover/Last-queen.png" alt="The Last Queen">
@@ -501,13 +503,44 @@
             <div class="manage-card">
                 <div class="find-card">
                     <h3 class="find-card-header">Find your Library card</h3>
-                    <form class="library-card-form" action="#">
+                    <form class="library-card-form" action="" method="post">
                         <div class="input-block">
                             <h4>Brooklyn Public Library</h4>
                             <input type="text" class="library-input" name="reader's_name" placeholder="Reader's name ">
-                            <input type="number" class="library-input" name="card_num" placeholder="Card number">
+                            <input type="text" class="library-input" name="card_num" placeholder="Card number">
                         </div>
                         <button class="library-btn" type="submit">Check the card</button>
+                        <div class="library-card_info hide">
+                            <div class="visit-info">
+                                <span>Visits</span>
+                                <div class="icon-info">
+                                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                                    </svg>
+                                </div>
+                                <div class="visit-info_value">1</div>
+                            </div>
+                            <div class="bonuses-info">
+                                <span>Bonuses</span>
+                                <div class="icon-info">
+                                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                                    </svg>
+                                </div>
+                                <div class="bonuses-info_value">1240</div>
+                            </div>
+                            <div class="books-info">
+                                <span>Books</span>
+                                <div class="icon-info">
+                                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="20" height="21" fill="#BB945F"/>
+                                        <rect x="2" width="1" height="19" fill="#826844"/>
+                                        <rect x="1" width="1" height="21" fill="white"/>
+                                    </svg>
+                                </div>
+                                <div class="books-info_value">0</div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="get-card">
@@ -518,6 +551,7 @@
                     <div class="acc-btns">
                         <button class="acc-btn" id="registr-btn2" type="button">Sign Up</button>
                         <button class="acc-btn" id="login-btn2" type="button">Log in</button>
+                        <button class="acc-btn hide" id="profile-btn2" type="button">Profile</button>
                     </div>
                 </div>
             </div>
@@ -591,11 +625,11 @@
                 <form action="" method="post">
                     <label for="email">
                         E-mail or readers card
-                        <input type="text" name="email_or_card" id="email">
+                        <input type="text" name="email_or_card" id="email" required>
                     </label>
                     <label for="password">
                         Password
-                        <input type="password" name="password" id="password" minlength="8">
+                        <input type="password" name="password" id="password" minlength="8" required>
                     </label>
                     <button class="login-form_logIn" type="submit">Log In</button>
                 </form>
@@ -603,6 +637,114 @@
             <div class="login-form_footer">
                 <span>Don’t have an account?</span>
                 <a href="" target="_blank" rel="noopener noreferrer">Register</a>
+            </div>
+        </div>
+        <div class="profile-form">
+            <div class="profile-form_left-block">
+                <div class="user-avatar">JD</div>
+                <div class="user-name">Jon Doel</div>
+            </div>
+            <div class="profile-form_right-block">
+                <div class="profile-form_header">
+                    <h3 class="profile-form_title">My profile</h3>
+                    <div class="profile-form_btn-close">
+                        <span class="profile-form_cross"></span>
+                    </div>
+                </div>
+                <div class="profile-form_body">
+                    <div class="card-info">
+                        <div class="visit-info">
+                            <span>Visits</span>
+                            <div class="icon-info">
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                                </svg>
+                            </div>
+                            <div class="visit-info_value">23</div>
+                        </div>
+                        <div class="bonuses-info">
+                            <span>Bonuses</span>
+                            <div class="icon-info">
+                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                                </svg>
+                            </div>
+                            <div class="bonuses-info_value">1240</div>
+                        </div>
+                        <div class="books-info">
+                            <span>Books</span>
+                            <div class="icon-info">
+                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="20" height="21" fill="#BB945F"/>
+                                    <rect x="2" width="1" height="19" fill="#826844"/>
+                                    <rect x="1" width="1" height="21" fill="white"/>
+                                </svg>
+                            </div>
+                            <div class="books-info_value">2</div>
+                        </div>
+                    </div>
+                    <div class="rented-books">
+                        <h4 class="rented-books_title">Rented books</h4>
+                        <ul class="rented-books_list">
+                            Empty
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile-form_footer">
+                    <span class="profile-form_footer_title">Card number</span>
+                    <span class="profile-form_footer_card">F00234030</span>
+                    <svg class="profile-form_copy-btn" width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2.46826" y="0.25" width="10.5917" height="9.5" rx="0.75" stroke="black" stroke-width="0.5"/>
+                        <rect x="0.25" y="2.25" width="10.5917" height="9.5" rx="0.75" fill="white" stroke="black" stroke-width="0.5"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="buy-card">
+            <div class="buy-card_header">
+                <h3 class="buy-card_title">Buy a library card</h3>
+                <div class="buy-card_btn-close">
+                    <span class="buy-card_cross"></span>
+                </div>
+            </div>
+            <div class="buy-card_body">
+                <form class="buy-card_form" action="" method="post">
+                    <label for="card-num">
+                        Bank card number
+                        <input type="tel" name="bank-card-num" id="card-num" inputmode="numeric" pattern="[0-9]{16}" maxlength="16" required>
+                    </label>
+                    <label for="monYear">
+                        Expiration code
+                        <br>
+                        <input class="short-input" type="number" name="month" id="monYear" min="01" max="12" required>
+                        <input class="short-input" type="number" name="year" id="monYear" min="22" max="35" required>
+                    </label>
+                    <label for="cvc">
+                        CVC
+                        <br>
+                        <input class="short-input" type="tel" name="cvc" id="cvc" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" required>
+                    </label>
+                    <label for="card-holder">
+                        Cardholder name
+                        <input type="text" name="card-holder" id="card-holder" minlength="2" required>
+                    </label>
+                    <label for="postal-code">
+                        Postal code
+                        <input type="number" name="postal-code" id="postal-code" min="10" required>
+                    </label>
+                    <label for="city">
+                        City / Town
+                        <input type="text" name="city" id="city" required>
+                    </label>
+                    <div class="buy-card_submit">
+                        <button class="buy-card_btn" type="submit">Buy</button>
+                        <span class="buy-card_price">$ 25.00</span>
+                    </div>
+                </form>
+                <p class="buy-card_description">
+                    If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. 
+                    Visitors to New York State can also use this form to apply for a temporary card.
+                </p>
             </div>
         </div>
     </div>

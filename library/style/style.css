@@ -116,12 +116,17 @@ p {
 }
 .profile-dropMenu.Auth .dropMenu-header h3 {
     font-size: 11px;
+    text-align: center;
 }
 .dropMenu-header h3 {
     display: none;
     font-size: 15px;
     line-height: 20px;
-    border-bottom: 1px solid #BB945F;
+}
+.dropMenu-header hr {
+    margin: 0 auto;
+    width: 40px;
+    border-top: 1px solid #BB945F;
 }
 .dropMenu-body {
     padding: 15px 10px 20px 10px;
@@ -150,7 +155,7 @@ p {
     background-color: #fff;
 }
 .profile-dropMenu.active .dropMenu-header h3 {
-    display: inline-block;
+    display: block;
 }
 /* Main */
 
@@ -397,6 +402,7 @@ p {
 .book-buy:disabled {
     border-color: #BB945F;
     color: #BB945F;
+    cursor: auto;
 }
 .book-cover {
     position: absolute;
@@ -542,6 +548,10 @@ p {
     border: 3px solid #BB945F;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
+.library-card-form .hide,
+.get-card .hide {
+    display: none;
+}
 .input-block {
     width: 100%;
     padding: 20px;
@@ -562,6 +572,7 @@ p {
     padding: 8px 20px;
     border-radius: 10px;
     border: none;
+    color: #BB945F;
 }
 .library-input::placeholder {
     color: #8E8E8E;
@@ -588,9 +599,35 @@ p {
     transition: all 1s;
 }
 .library-btn:hover,
-.acc-btn:hover {
+.acc-btn:hover,
+.buy-card_btn:hover,
+.login-form_logIn:hover,
+.register-form_signUp:hover {
     background-color: #BB945F;
     border: none;
+}
+.library-card_info,
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px auto;
+    width: 169px;
+    height: 63px;
+    font-family: var(--inter-font);
+    font-size: 10px;
+    line-height: 20px;
+    letter-spacing: 0.6px;
+}
+.visit-info, 
+.bonuses-info,
+.books-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.library-card_info svg {
+    vertical-align: middle;
 }
 .get-card {
     flex-basis: 456px;
@@ -613,6 +650,7 @@ p {
 .acc-btn {
     display: block;
     width: 75px;
+    height: 30px;
     padding: 8px 13px;
     margin-left: 20px;
     font: bold 10px var(--inter-font);
@@ -721,16 +759,75 @@ p {
     width: 250px;
     margin: calc(50vh - 131px) auto;
 }
+.profile-form {
+    display: none;
+    width: 600px;
+    height: 400px;
+    margin: calc(50vh - 200px) auto;
+    background-color: #fff;
+}
+.buy-card {
+    display: none;
+    width: 640px;
+    height: 540px;
+    margin: calc(50vh - 270px) auto;
+    background-color: #fff;
+}
 .register-form.open,
-.login-form.open {
+.login-form.open,
+.profile-form.open,
+.buy-card.open {
     display: block;
 }
+.profile-form_left-block {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    width: 170px;
+    height: 100%;
+    background-color: #0C0C0E;
+    font-family: var(--inter-font);
+    font-size: 20px;
+    line-height: 20px;
+}
+.profile-form_left-block .user-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    color: #BB945F;
+}
+.profile-form_left-block .user-name {
+    width: 120px;
+    padding: 5px 0;
+    text-align: center;
+    background-color: #fff;
+}
+.profile-form_right-block {
+    float: left;
+    padding: 38px 20px;
+    width: 430px;
+}
 .register-form_header,
-.login-form_header {
+.login-form_header,
+.profile-form_header,
+.buy-card_header {
     position: relative;
 }
+.buy-card_header {
+    height: 60px;
+    background-color: #0C0C0E;
+    color: #fff;
+}
 .register-form_title,
-.login-form_title {
+.login-form_title,
+.profile-form_title,
+.buy-card_title {
     font-family: var(--forum-font);
     font-size: 20px;
     line-height: 20px;
@@ -738,17 +835,40 @@ p {
     text-align: center;
     text-transform: uppercase;
 }
+.profile-form_title,
+.buy-card_title {
+    font-size: 40px;
+    font-weight: 400;
+    text-align: left;
+}
+.buy-card_title {
+    padding: 22px 0;
+    text-align: center;
+}
 .register-form_btn-close,
-.login-form_btn-close {
+.login-form_btn-close,
+.profile-form_btn-close,
+.buy-card_btn-close {
     position: absolute;
-    top: 0;
+    padding: 6px 0;
+    top: -5px;
     right: -10px;
     width: 15px;
     height: 15px;
     cursor: pointer;
 }
+.profile-form_btn-close {
+    top: -15px;
+    right: 5px;
+}
+.buy-card_btn-close {
+    top: 25px;
+    right: 25px;
+}
 .register-form_cross,
-.login-form_cross {
+.login-form_cross,
+.profile-form_cross,
+.buy-card_cross {
     display: block;
     height: 3px;
     width: 21px;
@@ -756,7 +876,9 @@ p {
     background-color: #0C0C0E;
 }
 .register-form_cross::after,
-.login-form_cross::after {
+.login-form_cross::after,
+.profile-form_cross::after,
+.buy-card_cross::after {
     content: '';
     display: block;
     height: 3px;
@@ -764,8 +886,13 @@ p {
     transform: rotate(90deg);
     background-color: #0C0C0E;
 }
+.buy-card_cross,
+.buy-card_cross::after {
+    background-color: #fff;
+}
 .register-form_body,
-.login-form_body {
+.login-form_body,
+.profile-form_body {
     height: 280px;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -774,22 +901,103 @@ p {
 .login-form_body {
     height: 160px;
 }
+.profile-form_body {
+    margin-top: 40px;
+    margin-bottom: 0;
+    height: 241px;
+}
+.buy-card_body {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 35px 40px 35px;
+    font-family: var(--inter-font);
+}
+.card-info {
+    width: 237px;
+    height: 81px;
+    margin: 0 0 18px 0;
+}
+.card-info span {
+    padding-top: 3px;
+    font-size: 20px;
+}
+.card-info .icon-info {
+    padding-top: 5px;
+}
+.rented-books {
+    width: 100%;
+    height: 100px;
+}
+.rented-books_title {
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-size: 25px;
+}
+.rented-books_list {
+    height: 70px;
+    list-style-position: inside;
+    overflow-y: scroll;
+}
+.rented-books_name {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    list-style: none;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+.rented-books_name::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    top: calc(50% - 3px);
+    left: 12px;
+    background-color: #000;
+    border-radius: 50%;
+}
+.rented-books_name:first-of-type {
+    margin-top: 20px;
+}
+/* .rented-books_list::-webkit-scrollbar {
+    width: 10px;
+} */
+.buy-card_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 410px;
+}
 .register-form_body label,
-.login-form_body label {
+.login-form_body label,
+.buy-card_form label {
     font-size: 15px;
     line-height: 20px;
     letter-spacing: 0.3px;
 }
 .register-form_body input,
-.login-form_body input {
+.login-form_body input,
+.buy-card_form input {
     margin-top: 9px;
     margin-bottom: 10px;
     height: 20px;
     width: 100%;
     border: 1px solid #BB945F;
 }
+.buy-card_form input {
+    margin-bottom: 0;
+}
+.buy-card_form .short-input {
+    width: 45px;
+    margin-right: 8px;
+}
 .register-form_signUp,
-.login-form_logIn {
+.login-form_logIn,
+.buy-card_btn {
     margin-top: 10px;
     height: 30px;
     width: 75px;
@@ -798,6 +1006,36 @@ p {
     font-weight: bold;
     font-size: 10px;
     letter-spacing: 1px;
+    cursor: pointer;
+}
+.buy-card_btn {
+    margin-top: 0;
+    margin-right: 25px;
+}
+.buy-card_price {
+    vertical-align: bottom;
+    font-family: var(--inter-font);
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.buy-card_description {
+    width: 330px;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 2px;
+}
+.profile-form_footer {
+    width: 100%;
+    height: 20px;
+    font-family: var(--inter-font);
+    font-size: 20px;
+}
+.profile-form_footer_card {
+    margin: 0 10px;
+    color: #BB945F;
+}
+.profile-form_copy-btn {
     cursor: pointer;
 }
 .register-form_footer,

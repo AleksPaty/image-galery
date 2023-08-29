@@ -14,25 +14,33 @@ const bodyElem = document.querySelector('main')
 const profileIcon = document.querySelector('.icon_profile')
 const loginBtns = [document.getElementById('login-btn'), document.getElementById('login-btn2')]
 const registrBtns = [document.getElementById('registr-btn'), document.getElementById('registr-btn2')]
-const closeModalBtns = [document.querySelector('.register-form_btn-close'), document.querySelector('.login-form_btn-close')]
+const closeModalBtns = [
+    document.querySelector('.register-form_btn-close'), document.querySelector('.login-form_btn-close'),
+    document.querySelector('.profile-form_btn-close'), document.querySelector('.buy-card_btn-close')
+]
+const profileOpenBtns = [document.getElementById('profile-btn'), document.getElementById('profile-btn2')]
 const logOutBtn = document.getElementById('logOut-btn')
 const registrForm = document.querySelector('.register-form_body form')
 const loginForm = document.querySelector('.login-form_body form')
+const profileForm = document.querySelector('.profile-form')
+const buyCardModal = document.querySelector('.buy-card')
+const buyCardForm = document.querySelector('.buy-card_form')
 // ----------------------- functions -----------------------------// 
 const openModalWind = (modal) => {
     let darkWrap = document.querySelector('.modal-space')
     darkWrap.classList.add('open')
     modal.classList.add('open')
 
-    modal.querySelector('a').onclick = (e) => {
-        e.preventDefault()
-        let modalForOpening = modal.className.includes('register') 
-            ? document.querySelector('.login-form') 
-            : document.querySelector('.register-form')
-        closeModalWind(modal)
-        openModalWind(modalForOpening)
+    if(modal.querySelector('a')) {
+        modal.querySelector('a').onclick = (e) => {
+            e.preventDefault()
+            let modalForOpening = modal.className.includes('register') 
+                ? document.querySelector('.login-form') 
+                : document.querySelector('.register-form')
+            closeModalWind(modal)
+            openModalWind(modalForOpening)
+        }
     }
-
     darkWrap.onclick = (e) => {
         if(e.target === e.currentTarget) closeModalWind(modal)
     }
@@ -40,12 +48,12 @@ const openModalWind = (modal) => {
 const closeModalWind = (modal) => {
     let darkWrap = document.querySelector('.modal-space')
     darkWrap.onclick = null
-    modal.querySelector('a').onclick = null
+    if(modal.querySelector('a')) modal.querySelector('a').onclick = null
     darkWrap.classList.remove('open')
     modal.classList.remove('open')
 }
 const generateCardNumber = () => {
-    let arrKeys = ['0', '1', '2', '3', '4', '5', 'A', 'B', 'C', '6', '7', '8', '9', 'D', 'E', 'F']
+    let arrKeys = ['0', '1', '2', '3', '4', '5', 'A', 'B', 'C', '6', '7', '8', '9', 'D', 'E', 'F', '0']
     let cardNumber = '';
     let i = 0;
     while(i < 9) {
@@ -64,6 +72,7 @@ const registrating = (form) => {
         input.value = ''
     }
     currentUserObj.cardNumber = generateCardNumber()
+    currentUserObj.cardByed = false;
     currentUserObj.visits = 1;
     currentUserObj.books = []
     usersArr.push(currentUserObj)
@@ -79,23 +88,37 @@ const changeIconFrofile = () => {
     let userProfileElem = document.createElement('div')
     let userFirstName = currentUser.firstName;
     let userLastName = currentUser.lastName;
+    let initials = `${userFirstName[0]}${userLastName[0]}`.toUpperCase()
 
-    userProfileElem.innerText = `${userFirstName[0]}${userLastName[0]}`.toUpperCase()
+    userProfileElem.innerText = initials;
     userProfileElem.classList.add('icon_user-profile')
+    userProfileElem.setAttribute('title', `${userFirstName} ${userLastName}`)
     profileIcon.removeChild(document.querySelector('.icon_profile img'))
     profileIcon.append(userProfileElem)
+    return [initials, userFirstName, userLastName]
 }
-const enterInProfile = (form) => {
+const validation = (form) => {
     let usersArr = JSON.parse(localStorage.getItem('users'))
     let inputList = form.querySelectorAll('input')
 
     let currentUserArr = usersArr.filter((user) => {
         if(inputList[0].value.includes('@')) {
-           return inputList[0].value === user.email && inputList[1].value === user.password 
+           if(inputList[0].value === user.email && inputList[1].value === user.password) {
+            user.visits += 1
+            return true
+           }
         } else {
-           return inputList[0].value.toUpperCase() === user.cardNumber && inputList[1].value === user.password 
+           if(inputList[0].value.toUpperCase() === user.cardNumber && inputList[1].value === user.password) {
+            user.visits += 1
+            return true
+           }
         }
     })
+    localStorage.setItem('users', JSON.stringify(usersArr))
+    return currentUserArr
+}
+const enterInProfile = (form) => {
+    let currentUserArr = validation(form)
     if(currentUserArr.length > 0) {
         localStorage.setItem('authorizedUser', JSON.stringify(currentUserArr[0]))
         location.reload()
@@ -115,7 +138,25 @@ if(isAuthorized) {
     dropMenu.classList.remove('hide')
     dropMenu.children[0].children[0].innerHTML = `${JSON.parse(localStorage.authorizedUser).cardNumber}`
     
-    changeIconFrofile()
+    let [initials, firstName, lastName] = changeIconFrofile()
+    profileForm.querySelector('.user-avatar').innerText = `${initials}`
+    profileForm.querySelector('.user-name').innerText = `${firstName} ${lastName}`
+    profileForm.querySelector('.profile-form_footer_card').innerText = `${currentUser.cardNumber}`
+    takeUserData(profileForm, currentUser)
+
+    let ownBooksList = profileForm.querySelector('.rented-books_list')
+    if(currentUser.books.length) {
+        if(ownBooksList.innerText.includes('Empty')) ownBooksList.innerText = '';
+        for(book of currentUser.books) {
+            let liItem = document.createElement('li')
+            liItem.innerText = `${book.bookName.toLowerCase()}, ${book.bookAuthor}`
+            liItem.classList.add('rented-books_name')
+            ownBooksList.prepend(liItem)
+        }
+    }
+}
+if(isAuthorized) { 
+    logOutBtn.addEventListener('click', doLogOut)
 }
 
 profileIcon.addEventListener('click', () => {
@@ -142,16 +183,27 @@ loginBtns.forEach((btn) => {
         dropMenu.classList.remove('active')
     })
 })
-
-if(isAuthorized) { 
-    logOutBtn.addEventListener('click', doLogOut)
+profileOpenBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        openModalWind(document.querySelector('.profile-form'))
+        document.querySelector('.profile-dropMenu.Auth').classList.remove('active')
+    })
+})
+document.querySelector('.profile-form_copy-btn').onclick = () => {
+    let copyText = document.querySelector('.profile-form_footer_card').innerText;
+    navigator.clipboard.writeText(copyText)
 }
 
 closeModalBtns.forEach((btn) => {
     if(btn.className.includes('register')) {
         btn.addEventListener('click', () => closeModalWind(document.querySelector('.register-form')))
-    } else {
+    } else if(btn.className.includes('login')) {
         btn.addEventListener('click', () => closeModalWind(document.querySelector('.login-form')))
+    } else if(btn.className.includes('profile')) {
+        btn.addEventListener('click', () => closeModalWind(document.querySelector('.profile-form')))
+    } else {
+        btn.addEventListener('click', () => closeModalWind(document.querySelector('.buy-card')))
     }
 })
 
@@ -163,6 +215,22 @@ loginForm.addEventListener('submit', (e) => {
     e.preventDefault()
     enterInProfile(loginForm)
 })
+
+const buingCard = (e) => {
+    e.preventDefault()
+    currentUser.cardByed = true
+    let users = JSON.parse(localStorage.getItem('users'))
+    for(let user of users) {
+        if(currentUser.email === user.email) {
+            user.cardByed = currentUser.cardByed
+        }
+    }
+    localStorage.setItem('authorizedUser', JSON.stringify(currentUser))
+    localStorage.setItem('users', JSON.stringify(users))
+    closeModalWind(buyCardModal)
+    location.reload()
+}
+buyCardForm.addEventListener('submit', buingCard)
 
 // --------------------------- burger menu in header -----------------------------// 
 const brgBtn = document.querySelector('.menu-btn')
@@ -250,9 +318,6 @@ window.addEventListener('resize', () => {
                 arrowLeft.onclick = () => tabletMoveSlide('left', curentPict) 
                 arrowRight.onclick = () => tabletMoveSlide('right', curentPict)
             }
-            if(dots[0].onclick) {
-                dots.forEach((d) => d.onclick = null )
-            }
         }
     }, 400)
 })
@@ -274,6 +339,56 @@ const chengeBooks = (e, season) => {
         }
     }
 }
+const checkOwnBooks = () => {
+    if(currentUser) {
+        let userBooks = currentUser.books
+        for(let book of booksAll) {
+            let bookName = book.querySelector('.book-name').innerText
+            for(let userBook of userBooks) {
+                if(bookName === userBook.bookName) {
+                    book.querySelector('.book-buy').setAttribute('disabled', '')
+                    book.querySelector('.book-buy').innerText = 'Own'
+                }
+            }
+        }
+    }
+}
+const addBookOnUser = (e) => {
+    let usersArr = JSON.parse(localStorage.getItem('users'))
+    let bookName = e.target.offsetParent.querySelector('.book-name').innerText
+    let bookAuthor = e.target.offsetParent.querySelector('.book-author').innerText.slice(3)
+    let bookObj = {
+        bookName,
+        bookAuthor
+    };
+
+    for(user of usersArr) {
+        if(currentUser.email === user.email) {
+            user.books.push(bookObj)
+            currentUser.books.push(bookObj)
+        }
+    }
+    localStorage.setItem('users', JSON.stringify(usersArr))
+    localStorage.setItem('authorizedUser', JSON.stringify(currentUser))
+    e.target.setAttribute('disabled', '')
+    e.target.innerText = 'Own'
+}
+
+
+if(isAuthorized) {
+    checkOwnBooks()
+    for(let book of booksAll) {
+        if(!currentUser.cardByed) {
+            book.querySelector('.book-buy').onclick = () => openModalWind(buyCardModal)
+        } else {
+            book.querySelector('.book-buy').onclick = event => addBookOnUser(event)
+        }
+    }
+} else {
+    for(let book of booksAll) {
+        book.querySelector('.book-buy').onclick = () => openModalWind(document.querySelector('.login-form'))
+    }
+}
 
 for(let radio of radioButtons) {
     radio.addEventListener('change', () => {
@@ -286,7 +401,10 @@ for(let radio of radioButtons) {
                     book.classList.remove('fade-in')
                     book.classList.add('fade-out')
 
-                    book.onanimationend = (e) => chengeBooks(e, checkedSeason)
+                    book.onanimationend = (e) => {
+                        chengeBooks(e, checkedSeason)
+                        checkOwnBooks()
+                    }
                 } else if(book.className.includes('fade-out')) {   // for more faster persons
                     book.onanimationend = (e) => chengeBooks(e, checkedSeason)
                 } else { book.onanimationend = null }
@@ -295,6 +413,73 @@ for(let radio of radioButtons) {
     })
 }
 
+// --------------------------- Digital Library Cards -------------------------------//
+const libraryForm = document.querySelector('.library-card-form')
+const libraryFormBtn = document.querySelector('.library-btn')
+const libraryInfo = document.querySelector('.library-card_info')
+const readerCard = document.querySelector('.get-card')
+const changeViewLibraryElem = (hideElems, showElem) => {
+    if(hideElems.length) {
+        hideElems.forEach((el) => el.remove('hide'))
+    } else {
+        hideElems.remove()
+    }
+    showElem.classList.remove('hide')
+}
+const checkeUserCard = () => {
+    let usersArr = JSON.parse(localStorage.getItem('users'))
+    let inputList = libraryForm.querySelectorAll('input')
+
+    let currentUserArr = usersArr.filter((user) => {
+        if(inputList[0].value === user.firstName && inputList[1].value === user.cardNumber ||
+            inputList[0].value === user.lastName && inputList[1].value === user.cardNumber) {
+            return true
+        }
+    })
+    if(currentUserArr.length) return currentUserArr[0]
+}
+function takeUserData(parentElem, user) {
+    let visitValueElem = parentElem.querySelector('.visit-info_value')
+    let valueBooksElem = parentElem.querySelector('.books-info_value')
+
+    visitValueElem.innerText = `${user.visits}`
+    valueBooksElem.innerText = `${user.books.length}`
+}
+const toggleUserInfo = () => {
+    let inputList = libraryForm.querySelectorAll('input')
+    libraryFormBtn.classList.toggle('hide')
+    libraryInfo.classList.toggle('hide')
+
+    setTimeout(() => {
+        libraryFormBtn.classList.toggle('hide')
+        libraryInfo.classList.toggle('hide')
+        for(let input of inputList) {
+            input.value = ''
+        }
+    }, 10000)
+}
+
+if(isAuthorized) {               // if user authorized
+    takeUserData(libraryInfo, currentUser)
+    changeViewLibraryElem(libraryFormBtn, libraryInfo)
+    let libraryInputs = libraryForm.querySelectorAll('input')
+    libraryInputs[0].value = `${currentUser.firstName} ${currentUser.lastName}`
+    libraryInputs[1].value = `${currentUser.cardNumber}`
+
+    let [header, bodyText, footerBtn] = readerCard.children
+    header.innerText = 'Visit your profile';
+    bodyText.innerText = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
+    changeViewLibraryElem([footerBtn.children[0], footerBtn.children[1]], footerBtn.children[2])
+}
+
+libraryForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    let currentUser = checkeUserCard()
+    if(currentUser) {
+        takeUserData(libraryInfo, currentUser)
+        toggleUserInfo()
+    }
+})
 
 
 // --------------------------- trash -------------------------------//
