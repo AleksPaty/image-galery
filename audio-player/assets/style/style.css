@@ -211,7 +211,6 @@
 .arrow-footer .arrow {
     width: 100%;
     transform: rotate(180deg);
-    filter: drop-shadow(16px 16px 20px blue);
 }
 .arrow-footer .arrow.opening {
     transform: rotate(0deg);
@@ -275,5 +274,10 @@
 @media screen and (max-width: 520px) {
     .player {
         width: 72%;
+    }
+}
+@media screen and (max-width: 420px) {
+    .player {
+        width: 80%;
     }
 }
