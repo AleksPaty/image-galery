@@ -1,10 +1,11 @@
 import {req} from "./postService.js";
 let isLoaded = false;
 
-const getImageElems = async () => {
-    let data = await req("https://api.unsplash.com/photos/random?extras=url_s&count=20&client_id=vmgHfoNoz7EggApuiQzTKFpDG2Et06ANC7MjjlhXHL0")
-    console.log(data)
-    return data.map((img) => {
+const getImageElems = async (puth) => {
+    let data = await req(puth)
+
+    let imgList = data.results ? data.results : data
+    return imgList.map((img) => {
         let wrapperElem = document.createElement("div")
         let imgElem = document.createElement("img")
         imgElem.src = img.urls.small;
@@ -18,36 +19,34 @@ const getImageElems = async () => {
     })
 }
 
-const renderImages = async () => {
-    let images = await getImageElems()
-    console.log(images)
+const renderImages = async (puth) => {
+    let images = await getImageElems(puth)
+    if(!images.length) {
+        isLoaded = false;
+        return
+    }
+    
     images.forEach((img) => {
-        let curColumn;
-        let columHeight;
-
-        document.querySelectorAll(".column").forEach((col, i) => {
-            console.log(columHeight, col.offsetHeight)
-            if(i === 0) {
-                curColumn = col;
-                columHeight = col.offsetHeight;
-            } else if(columHeight > col.offsetHeight) {
-                columHeight = col.offsetHeight;
-                curColumn = col
-                console.log(col.offsetHeight)
-            }
-        })
-        curColumn.prepend(img)
+        let timeoutId = setTimeout(() => {
+            let curColumn;
+            let columHeight;
+            
+            document.querySelectorAll(".column").forEach((col, i) => {
+                if(i === 0) {
+                    curColumn = col;
+                    columHeight = col.offsetHeight;
+                } else if(columHeight > col.offsetHeight) {
+                    columHeight = col.offsetHeight;
+                    curColumn = col
+                }
+            })
+            curColumn.append(img)
+            clearTimeout(timeoutId)
+        }, 1000)
+        // clearTimeout(timeoutId)
+        isLoaded = true
+        checkLoad()
     })
-    // document.querySelectorAll(".column").forEach((col, i) => {
-    //     let count = 5 * i;
-    //     let max = count + 5;
-    //     while (count < max) {
-    //         col.prepend(images[count])
-    //         count++;
-    //     }
-    // })
-    isLoaded = true
-    checkLoad()
 }
 
 const checkLoad = () => {
@@ -55,14 +54,11 @@ const checkLoad = () => {
     let loadIcon = document.querySelector(".load-icon")
     if (!isLoaded) {
         loadWrap.classList.add('loading')
-        let degree = 0;
-        let rotateId = setInterval(() => {
-            if(isLoaded) clearInterval(rotateId);
-            loadIcon.style.transform = `rotate(${degree}deg)`
-            degree += 180
-        }, 1500)
+
+        loadIcon.classList.add("active")
+
     } else {
-        loadIcon.style.transform = null;
+        loadIcon.classList.remove("active")
         loadWrap.classList.remove('loading')
     }
 }
@@ -80,6 +76,27 @@ const openModalImg = (e) => {
     }
 }
 
+const findForm = document.querySelector(".search-form")
+const crossBtn = document.querySelector(".search-cross")
+const getSearchImg = async(e) => {
+    e.preventDefault()
+    let searchWord = e.target.firstElementChild.value;
+
+    document.querySelectorAll(".column").forEach((col) => {
+        col.innerHTML = null
+    })
+    isLoaded = false;
+    checkLoad()
+    renderImages(`https://api.unsplash.com/search/photos?query=${searchWord}&per_page=20&client_id=vmgHfoNoz7EggApuiQzTKFpDG2Et06ANC7MjjlhXHL0`)
+}
+
+const cleanFindRequest = (e) => {
+    findForm.querySelector(".search-img").value = ""
+}
+
+findForm.addEventListener('submit', getSearchImg)
+crossBtn.addEventListener('click', cleanFindRequest)
+
 document.querySelectorAll(".column").forEach((col) => {
     col.addEventListener('click', openModalImg)
 })
@@ -91,4 +108,4 @@ document.querySelector(".modal-wrapper").onclick = (e) => {
 }
 
 checkLoad()
-renderImages()
+renderImages("https://api.unsplash.com/photos/random?extras=url_s&count=20&client_id=vmgHfoNoz7EggApuiQzTKFpDG2Et06ANC7MjjlhXHL0")

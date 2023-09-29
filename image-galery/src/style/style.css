@@ -24,14 +24,28 @@ body {
 .logo {
     color: #fff;
 }
-.search-field {
-    max-width: 250px;
+.search-form {
+    position: relative;
+    width: 300px;
+    flex-basis: 200px;
 }
-.search-field .search-img {
+.search-form .search-img {
     height: 30px;
     width: 100%;
     padding: 4px;
+    padding-right: 15px;
+    outline: none;
     border-radius: 5px;
+}
+.search-form .search-img:focus {
+    box-shadow: 0 1px 5px 2px #ccc;
+}
+.search-cross {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-family: cursive;
+    cursor: pointer;
 }
 
 .image-galery_body {
@@ -49,8 +63,23 @@ body {
 }
 .load-field.loading .load-icon {
     width: 100%;
-    transition: transform 2s;
+    transition: transform 1s;
 }
+.load-field.loading .load-icon.active {
+    animation: loading 2s ease-in-out 100ms infinite;
+}
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .row {
     display: flex;
     align-items: flex-start;
@@ -85,6 +114,7 @@ body {
 .modal-img {
     margin: auto;
     max-width: 85%;
+    max-height: 95%;
 }
 .modal-img img {
     width: 100%;
